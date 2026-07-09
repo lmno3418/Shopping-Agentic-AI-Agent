@@ -11,6 +11,10 @@ Shopping Agent is a Streamlit-based AI shopping assistant that helps users find 
 
 The app is designed around a modular tool workflow, where the LLM decides when to search, rate, inspect an image, or checkout.
 
+## Project Showcase
+
+![Shopping Agent screenshot](project_shopping_agent/resources/screenshot001.png)
+
 ## Basic Architecture
 
 The project is split into a few focused layers:
