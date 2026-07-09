@@ -1,7 +1,6 @@
 import sqlite3
-import os
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "store.db")
+from store_db import DB_PATH
 
 
 def create_database():
