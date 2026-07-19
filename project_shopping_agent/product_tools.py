@@ -2,11 +2,19 @@ import base64
 import json
 import os
 
+from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage
 from langchain_core.tools import tool
+from langchain_openai import ChatOpenAI
 
 from reviews_api import get_product_rating
 from store_db import create_order, get_product_name_and_price, search_products as query_products
+
+
+load_dotenv()
+
+googlegeminiapikey = os.getenv("googlegeminiapikey")
+visionmodel = os.getenv("visionmodel")
 
 
 @tool
@@ -82,12 +90,13 @@ def describe_product_image(image_path: str) -> str:
         },
     ])
 
-    from langchain_groq import ChatGroq
+    from langchain_google_genai import ChatGoogleGenerativeAI
 
-    vision_llm = ChatGroq(
-        model="meta-llama/llama-4-scout-17b-16e-instruct",
+    vision_llm = ChatGoogleGenerativeAI(
+        model=visionmodel,
         temperature=0,
-        api_key=os.getenv("groqapikey"),
+        google_api_key=googlegeminiapikey,
     )
+
     response = vision_llm.invoke([message])
     return response.content

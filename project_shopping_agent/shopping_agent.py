@@ -2,22 +2,23 @@ import os
 
 from dotenv import load_dotenv
 from langchain.agents import create_agent
-# from langchain_groq import ChatGroq
-from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
+# from langchain_openai import ChatOpenAI
 
 
 from product_tools import checkout, describe_product_image, get_rating, search_products
 
 load_dotenv()
 
-# groqapikey = os.getenv("groqapikey")
-# llm = ChatGroq(model="qwen/qwen3-32b", temperature=0, api_key=groqapikey)
-llm = ChatOpenAI(
-    base_url=os.getenv("URL"),
-    api_key=os.getenv("API_KEY"),
-    model=os.getenv("MODEL"),
-    temperature=1,
-)
+groqapikey = os.getenv("groqapikey")
+model = os.getenv("model")
+llm = ChatGroq(model=model, temperature=0, api_key=groqapikey)
+# llm = ChatOpenAI(
+#     base_url=os.getenv("URL"),
+#     api_key=os.getenv("API_KEY"),
+#     model=os.getenv("MODEL"),
+#     temperature=1,
+# )
 
 agent = create_agent(
     tools=[search_products, get_rating, checkout, describe_product_image],
