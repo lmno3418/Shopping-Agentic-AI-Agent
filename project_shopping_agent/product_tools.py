@@ -14,7 +14,7 @@ from store_db import create_order, get_product_name_and_price, search_products a
 load_dotenv()
 
 googlegeminiapikey = os.getenv("googlegeminiapikey")
-visionmodel = os.getenv("visionmodel")
+visionmodel = "gemini-2.5-flash"
 
 
 @tool

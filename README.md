@@ -48,14 +48,12 @@ Create a `.env` file at the project root or export the following variables in yo
 ```bash
 # Chat LLM (Groq)
 export groqapikey="your_groq_api_key"
-export model="gpt-XXX"  # model name used with ChatGroq
 
 # Vision LLM (Google Gemini via langchain_google_genai)
 export googlegeminiapikey="your_google_api_key"
-export visionmodel="models/vision-xxx"  # vision model name
 ```
 
-Note: `shopping_agent.py` reads `groqapikey` and `model`. `product_tools.py` reads `googlegeminiapikey` and `visionmodel`.
+Note: `shopping_agent.py` reads `groqapikey`; `product_tools.py` reads `googlegeminiapikey`. Model names are set in code (`model` in `shopping_agent.py`, `visionmodel` in `product_tools.py`), not in secrets.
 
 ## Quick Start (local)
 
@@ -108,8 +106,8 @@ Open the UI at the URL shown by Streamlit (commonly `http://localhost:8501`).
 
 ## Troubleshooting
 
-- If image analysis fails, verify `googlegeminiapikey` and `visionmodel` are set and reachable.
-- If chat/LLM calls fail, verify `groqapikey` and `model` are set.
+- If image analysis fails, verify `googlegeminiapikey` is set and `visionmodel` in `product_tools.py` is still offered by Google.
+- If chat/LLM calls fail with `NotFoundError`, Groq retired the model: update `model` in `shopping_agent.py`.
 - To inspect orders or products manually, open the SQLite file `project_shopping_agent/store.db` with any SQLite client.
 
 ## What's Included / Learning Outcomes
