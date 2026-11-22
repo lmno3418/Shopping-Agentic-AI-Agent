@@ -10,7 +10,7 @@ from product_tools import checkout, describe_product_image, get_rating, search_p
 
 load_dotenv()
 
-groqapikey = os.getenv("groqapikey")
+groqapikey = os.getenv("GROQ_API_KEY")
 model = "openai/gpt-oss-120b"  # Groq retires models often: console.groq.com/docs/deprecations
 llm = ChatGroq(model=model, temperature=0, api_key=groqapikey)
 # llm = ChatOpenAI(
